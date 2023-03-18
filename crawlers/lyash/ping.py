@@ -57,11 +57,13 @@ class TorReq:
         except Exception as e:
             print(e)
             pass
-
-        self.response = response
-        self.nvisited += 1
-        self.visited.append(url)
-        self.fetch_links()
+        try:
+            self.response = response
+            self.nvisited += 1
+            self.visited.append(url)
+            self.fetch_links()
+        except:
+            pass
 
     def fetch_links(self):
         soup = bs4.BeautifulSoup(self.response, "lxml")
@@ -78,6 +80,6 @@ class TorReq:
 
 
 x = TorReq()
-
-
-x.get("http://vww6ybal4bd7szmgncyruucpgfkqahzddi37ktceo3ah7ngmcopnpyyd.onion")
+seed_list = ['http://qigcb4g4xxbh5h06.onion ', 'http://qjxejztupq4x7re.onion', 'http://a2rfh7u5ryldaocg.onion', 'http://qhvqofwtqx7ddpzy.onion', 'http://tl7n3gkpjnyvl7c2.onion', 'http://vijs2fmpd72nbqok.onion', 'http://xlv5dckljs4vhmhm.onion', 'http://cmgvqnxjoiqthvrc.onion', 'http://у7pm60f53hzeb7u2.onion', 'http://fosyxyjdgzbeacry.onion', 'http://2xcd24wfjiqwzwnr.onion', 'http://e4nybovdbcwaqlyt.onion', 'http://ihdhoeoovbtgutfm.onion', 'http://oscbw3h7wrfxqi4m.onion', 'http://vyrxto4jsgoxvilf.onion', 'http://uqxc5rgqum7ihsey.onion', 'http://uted272mruszpl4z.onion', 'http://kkvj4mhsttfcrksj.onion', 'http://jute7c4nqhc3czjanxoynuaeqjdiw2rdenjec5fzajgdtymrkf5xiyid.onion', 'http://Ifhu7crxlscozvquvj5zyaepnzowqghijugih2phq34gbqwg25kutqad.onion', 'http://lgvlgiguxjaiknspz3ddgtd57ckapz6m6qh5cnzei6q230goex3zp7id.onion', 'http://qn2jfaleeshn7jmxstfjszbotwp6nlusnpqfjqsdglc73r2leqsthhad.onion', 'http://rhbyafmqy2pwrokhzmpdyemvohib34g4qdbjilvnihy3fawbjs7bbbid.onion', 'http://rjann5eombayqugdlf4clvddvhw5545lrllng6lpf6cf2msibd6datqd.onion', 'http://yxrfбuf2mvuazmt4.onion', 'http://763k6h7u3kx5m27mkoraoqt64ftglix5tphgugyxzghfczzkgl74hyd.onion', 'http://bf3xcbgqlpkv2zkxkhwygmjnflmi4xweb7qefa3chmnnuffzufg6nvad.onion', 'http://gvefwipd7xtjv54xgj5itvub6ys6kbv7uqw5sb25nhshtfvfxmduo7id.onion ', 'http://jjb24xrxdlmezul7zg3fcsqpwxcsy3qhc2ufvsl6qccndasmda4vahqd.onion ', 'http://ocpb44b4vs6ed24dnlkrxu6ixc6qapebacsqst55cn4d6ndnnxq6wsqd.onion ', 'http://ptoccrf6l4atxf4n.onion', 'http://ptpd5veqnscjdexvrydq20бpoqln2wose7v4d6n45zioj3z7qxkuypad.onion', 'http://u7y7hnemlzjimmdk.onion', 'http://umd2fe56bmjmasuk.onion', 'http://wbpcdrudlxgbvrrlhjxo2vlsrqltj54tpcbptfb52nk2voroepeaefad.onion ', 'http://7jcj4uy4tzegxqoiott4y3i3t3y42ukw2kc64c4misayxaxp3yrvljqd.onion ', 'http://7jcj4uy4tzegxqoiott4y3i313y42ukw2kc64c4misayxaxp3yrvljqd.onion', 'http://xke7mh3qjekqccqq.onion']
+for i in seed_list:
+    x.get(i)
