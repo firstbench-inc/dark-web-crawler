@@ -1,6 +1,7 @@
 import requests
 import bs4
 from urllib.parse import urlparse
+import re
 
 LIMIT = 100
 
@@ -22,7 +23,9 @@ LIMIT = 100
 def is_valid_url(url):
     try:
         result = urlparse(url)
-        return all([result.scheme, result.netloc])
+        if all([result.scheme, result.netloc]):
+            pattern = r"^http:\/\/[a-z2-7]{16}\.onion\/?$"
+            return bool(re.match(pattern, url))
     except ValueError:
         return False
 
@@ -61,7 +64,7 @@ class TorReq:
         self.fetch_links()
 
     def fetch_links(self):
-        soup = bs4.BeautifulSoup(self.response, "lxml", features="xml")
+        soup = bs4.BeautifulSoup(self.response, "lxml")
         links = soup.find_all("a")
         for link in links:
             url = link.get("href")
