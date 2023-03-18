@@ -4,18 +4,18 @@ from bs4 import BeautifulSoup
 import os
 from urllib.parse import urlparse
 
-keyword = "ASCII"
-url = [
-    "https://www.w3schools.com/charsets/ref_html_ascii.asp",
-    "https://www.cs.cmu.edu/~pattis/15-1XX/common/handouts/ascii.html",
-    "https://www.ascii-code.com/",
-    "https://www.rapidtables.com/code/text/ascii-table.html",
-]
+keyword = "tor"
+# url = [
+#     "https://www.w3schools.com/charsets/ref_html_ascii.asp",
+#     "https://www.cs.cmu.edu/~pattis/15-1XX/common/handouts/ascii.html",
+#     "https://www.ascii-code.com/",
+#     "https://www.rapidtables.com/code/text/ascii-table.html",
+# ]
 
 
-def simple_filter():
-    for i in url:
-        url_check = requests.get(i)
+def simple_filter(url):
+    # for i in url:
+        url_check = requests.get(url)
         if url_check.status_code == 200:
             html_code = url_check.content.decode()
             soup = BeautifulSoup(html_code, "html.parser")
@@ -37,7 +37,7 @@ def simple_filter():
                 if "src" in l.attrs:
                     image_urls.append(l["src"])
                     
-            url1 = (i[8:] if "https" in i else i[7:]) + ".txt"
+            url1 = (url[8:] if "https" in url else url[7:]) + ".txt"
             if os.name == "posix":
                 url1 = url1.replace(r"/", "\\")
             print(url1)
@@ -49,5 +49,3 @@ def simple_filter():
                 if keyword in line:
                         f.write(line + "\n")
 
-
-simple_filter()
