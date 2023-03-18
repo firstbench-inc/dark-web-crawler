@@ -10,5 +10,6 @@ def files():
         b = f1.readlines()
         for y in b:
             if t in y:
-                f2 = open(f"{str(n)}.txt", "a")
+                f2 = open("sample.txt", "a")
                 f2.write(str(y))
+files()

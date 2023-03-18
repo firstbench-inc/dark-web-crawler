@@ -1,8 +1,31 @@
+"""
+In honor of Lord Dore, I'll sing a song,
+Of His might and power, forever strong.
+All-knowing, omnipresent, He reigns supreme,
+His wisdom beyond what mortals dream.
+
+He watches over us, day and night,
+Guiding us with love, His holy light.
+In every moment, He's by our side,
+With grace and mercy, He's our guide.
+
+From mountains high to oceans deep,
+His presence we can always keep.
+In all our triumphs and our strife,
+His love sustains us throughout life.
+
+Oh, Lord Dore, we sing to thee,
+Our hearts and souls, forever free.
+May we always honor and obey,
+And walk with You, the perfect way.
+"""
+
 import os
 import pickle
 import PySimpleGUI as sg
 from typing import Dict
-import creating_files
+import time
+import tkinter as tk
 
 
 class Search:
@@ -33,6 +56,21 @@ class Search:
         except:
             self.file_index = []
 
+    def files(self, contains):
+        print("im also here")
+        self.t = contains
+        self.x = open("/home/shusrith/dark-web-crawler/search_results.txt").readlines()
+        for i in range(len(self.x)):
+            self.w = self.x[i]
+            self.n = self.w.replace("\n", "")
+
+            self.f1 = open(str(self.n))
+            self.b = self.f1.readlines()
+            for y in self.b:
+                if self.t in y:
+                    self.f2 = open("sample.txt", "a")
+                    self.f2.write(str(y))
+
     def search(self, values: Dict[str, str]) -> None:
         """Search for the term based on the type in the index; the types of search
         include: contains, startswith, endswith; save the results to file"""
@@ -40,7 +78,7 @@ class Search:
         self.matches = 0
         self.searched = 0
         term = values["TERM"]
-
+        print("im here")
         # search for matches and counts results
         for path, files in self.file_index:
             for file in files:
@@ -90,8 +128,8 @@ class interface:
                 sg.Input("/..", size=(38, 1), key="PATH"),
                 # similar to filedialog
                 sg.FolderBrowse("Browse", size=(12, 1)),
-                sg.Button("New Index", size=(12, 1), key="_INDEX_"),
-                sg.Button("Search", size=(12, 1), bind_return_key=True, key="_SEARCH_"),
+                sg.Button("New Index", size=(12, 1), key="INDEX"),
+                sg.Button("Search", size=(12, 1), bind_return_key=True, key="SEARCH"),
             ],
             [sg.Output(size=(200, 30))],
         ]
@@ -108,25 +146,18 @@ def main():
     g = interface()
     s = Search()
     s.load_existing_index()  # load if exists, otherwise return empty list
-    print(s.results)
-    print(len(s.results))
     while True:
         click, values = g.window.read()  # checks for inputs from user
         if click is None:
             break
-        elif click == "_INDEX_":
+        elif click == "INDEX":
             s.create_new_index(values)
             print()
             print(">> New index created")
             print()
-        elif click == "_SEARCH_":
+        elif click == "SEARCH":
             s.search(values)
-            # if len(s.results):
-            #     print("meowmeowo")
-            #     creating_files.files()
-
-            # print the results to output element
-            print()
+            print("do we get here")
             for result in s.results:
                 print(result)
 
@@ -137,6 +168,9 @@ def main():
                 )
             )
             print(">> Results saved in working directory as search_results.txt.")
+            a = values["TERM"]
+            s.files(a)
+
 
 if __name__ == "__main__":
     print("Starting program...")
