@@ -29,8 +29,8 @@ def simple_filter():
 
             image_tags = soup.find_all("img")
 
-            if not os.path.exists("crawlers/lyash/filter-results"):
-                os.mkdir("crawlers/lyash/filter-results")
+           # if not os.path.exists(r"crawlers\lyash\filter-results"):
+            #    os.mkdir(r"crawlers\lyash\filter-results")
 
             image_urls = []
             for l in image_tags:
@@ -38,10 +38,12 @@ def simple_filter():
                     image_urls.append(l["src"])
                     
             url1 = (i[8:] if "https" in i else i[7:]) + ".txt"
+            print(url1)
             if os.name == "posix":
                 url1 = url1.replace(r"/", "\\")
             print(url1)
-            output_file = os.path.join("crawlers/lyash/filter-results", url1)
+            output_file = os.path.join(r"crawlers\lyash\filter-results", url1)
+            print(output_file)
             f = open(output_file, "w")
             for k in image_urls:
                 f.write(k + "\n")
