@@ -11,11 +11,19 @@ url = [
     "https://www.ascii-code.com/",
     "https://www.rapidtables.com/code/text/ascii-table.html",
 ]
+import time
+
+
+def log_time(f):
+    def wrapped(*args, **kwargs):
+        tn = time.time_ns()
+        f(*args, **kwargs)
+        print("time taken by function", f, time.time_ns - tn)
 
 
 def simple_filter():
     for i in url:
-        url_check = requests.get(i)
+        url_check = get(i)
         if url_check.status_code == 200:
             html_code = url_check.content.decode()
             soup = BeautifulSoup(html_code, "html.parser")
@@ -53,3 +61,9 @@ def simple_filter():
 
 
 simple_filter()
+
+
+@log_time
+def get(i):
+    url_check = requests.get(i)
+    return url_check
