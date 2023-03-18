@@ -1,4 +1,5 @@
-from scrapy import settings
+# from scrapy import settings
+from settings import HTTP_TOR_PROXIES, HTTPS_TOR_PROXIES
 from scrapy.exceptions import IgnoreRequest
 import random
 import logging
@@ -27,9 +28,9 @@ class Proxies(object):
 
             # proxy lists
             if uri.scheme == "https:":
-                proxy_list = settings.get(HTTPS_TOR_PROXIES)
+                proxy_list = HTTPS_TOR_PROXIES
             else:
-                proxy_list = settings.get(HTTP_TOP_PROXIES)
+                proxy_list = HTTP_TOR_PROXIES
 
             edited_uri = uri.replace(".onion", "")
             seed_hash = f"{edited_uri.netloc}"
