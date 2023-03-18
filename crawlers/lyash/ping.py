@@ -1,5 +1,8 @@
 import requests
 import bs4
+from urllib.parse import urlparse
+
+LIMIT = 100
 
 # SEEDLIST = [
 #     "http://torlinkv7cft5zhegrokjrxj2st4hcimgidaxdmcmdpcrnwfxrr2zxqd.onion/",
@@ -16,6 +19,14 @@ import bs4
 # ]
 
 
+def is_valid_url(url):
+    try:
+        result = urlparse(url)
+        return all([result.scheme, result.netloc])
+    except ValueError:
+        return False
+
+
 class TorReq:
     def __init__(self):
         self.session = requests.session()
@@ -24,34 +35,46 @@ class TorReq:
             "https": "socks5h://127.0.0.1:9050",
         }
         self.nvisited = 0
+        self.visited = []
         self.response = ""
+        self.url_stack = []
 
-    def get(self):
+    def get(self, url):
         # for seed in SEEDLIST:
         #     response = requests.get(seed)
         #     print(response.status_code)
+        if self.nvisited >= LIMIT:
+            return
+        if url in self.visited:
+            return
 
         try:
-            response = self.session.get(
-                "http://vww6ybal4bd7szmgncyruucpgfkqahzddi37ktceo3ah7ngmcopnpyyd.onion"
-            ).content
+            print(url)
+            response = self.session.get(url).content
         except Exception as e:
             print(e)
             pass
 
         self.response = response
         self.nvisited += 1
+        self.visited.append(url)
+        self.fetch_links()
 
     def fetch_links(self):
-        soup = bs4.BeautifulSoup(self.response, "lxml")
+        soup = bs4.BeautifulSoup(self.response, "lxml", features="xml")
         links = soup.find_all("a")
         for link in links:
             url = link.get("href")
-            print(url)
+            if is_valid_url(url):
+                self.url_stack.append(url)
+                self.chain()
+
+    def chain(self):
+        url = self.url_stack.pop(0)
+        self.get(url)
 
 
 x = TorReq()
 
 
-x.get()
-x.fetch_links()
+x.get("http://vww6ybal4bd7szmgncyruucpgfkqahzddi37ktceo3ah7ngmcopnpyyd.onion")
