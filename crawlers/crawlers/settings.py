@@ -1,4 +1,4 @@
-# Scrapy settings for crawlers project
+# Scrapy settings for crawler project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,17 +7,19 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "crawlers"
+BOT_NAME = "crawler"
 
-SPIDER_MODULES = ["crawlers.spiders"]
-NEWSPIDER_MODULE = "crawlers.spiders"
+SPIDER_MODULES = ["crawler.spiders"]
+NEWSPIDER_MODULE = "crawler.spiders"
 
+HTTPS_TOR_PROXIES = ["http://localhost:8123/"]
+HTTP_TOR_PROXIES = ["http://localhost:150%02d" % i for i in range(0,30)]
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "crawlers (+http://www.yourdomain.com)"
+#USER_AGENT = "crawler (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -44,14 +46,14 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    "crawlers.middlewares.CrawlersSpiderMiddleware": 543,
-#}
+SPIDER_MIDDLEWARES = {
+   "crawler.middlewares.Proxies": 543,
+}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "crawlers.middlewares.CrawlersDownloaderMiddleware": 543,
+#    "crawler.middlewares.CrawlerDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -62,9 +64,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "crawlers.pipelines.CrawlersPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   "crawler.pipelines.CrawlerPipeline": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

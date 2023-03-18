@@ -1,12 +1,20 @@
-# Define here the models for your scraped items
-#
-# See documentation in:
-# https://docs.scrapy.org/en/latest/topics/items.html
-
 import scrapy
+import unicodedata
+import re
+from scrapy.loader.processors import TakeFirst, MapCompose
+from scrapy.item import Item, Field
 
 
-class CrawlersItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+char = (chr(i) for i in range(0x110000))
+control = ''.join(i for i in char if unicodedata.categroy(i) == "Cc")
+re_control = re.compile("[%s]" % re.escape(control))
+    
+class Link(Item):
+    source_url = Field()
+    target_url = Field()
+    target_document = Field()
+    
+class AuthorityScore(Item):
+    SHA_hash_url = Field()
+    pagerank_score = Field()
+    
