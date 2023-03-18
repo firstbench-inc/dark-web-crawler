@@ -1,0 +1,254 @@
+/wiki/resources/assets/poweredby_mediawiki_88x31.png
+
+
+
+
+The Hidden Wiki
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Main Page
+
+From The Hidden Wiki
+
+Jump to navigationJump to search
+
+Contents
+
+1 Editor's picks
+2 Volunteer
+3 Introduction Points
+4 Financial Services
+5 Commercial Services
+6 Domain Services
+7 Anonymity & Security
+8 Darknet versions of popular sites
+9 Blogs / Essays / News Sites
+10 Email / Messaging
+11 Social Networks
+12 Forums / Boards / Chats
+13 Whistleblowing
+14 H/P/A/W/V/C
+15 Hosting, website developing
+16 File Uploaders
+17 Audio - Radios on Tor
+18 Videos / Movies / TV / Games
+19 Books
+20 Drugs
+21 Erotica
+
+21.1 Noncommercial (E)
+21.2 Commercial (E)
+
+
+22 Uncategorized
+23 Non-English
+
+23.1 Brazilian
+23.2 Finnish / Suomi
+23.3 French / Français
+23.4 German / Deutsch
+23.5 Greek / ελληνικά
+23.6 Italian / Italiano
+23.7 Japanese / 日本語
+23.8 Korean / 한국어
+23.9 Chinese / 中国語
+23.10 Polish / Polski
+23.11 Russian / Русский
+23.12 Spanish / Español
+23.13 Portuguese / Português
+23.14 Swedish / Svenska
+23.15 Turkish / Türk
+
+
+24 Hidden Services - Other Protocols
+25 P2P FileSharing
+
+25.1 Chat centric services
+
+25.1.1 Defunct IRC services (for archive purposes)
+25.1.2 SILC
+25.1.3 XMPP (formerly Jabber)
+25.1.4 TorChat Addresses
+
+
+
+
+26 SFTP - SSH File Transfer Protocol
+
+26.1 OnionCat Addresses
+26.2 Bitcoin Seeding
+
+
+27 Dead Hidden Services
+
+
+
+
+Welcome to The Hidden Wiki!
+Our official Hidden Wiki url in 2023 is: http://zqktlwiuavvvqqt4ybvgvi7tyo4hjl5xgfuvpdf6otjiycgwqbym2qad.onion
+Add it to bookmarks and spread it!!!!!!
+
+
+
+The Official Hidden Wiki 2023 contest is ON!!
+Now You can earn FREE MONEY with the Hidden Wiki!
+
+Click HERE to learn how!
+Editor's picks
+Pick a random page from the article index and replace one of these slots with it:
+
+The Matrix - Very nice to read.
+Care to start recording onionland's history?
+Horizon Store - Automated carding store.Fast replies.
+Cstore - The original CardedStore - Electronics purchased with carded giftcards, Everything Brand new.
+Kamagra for Bitcoin - Same as Viagra but cheaper!
+Storex Samsung All kinds of products with escrow.
+Mobile Store - Factory unlocked iphones and other smartphones.
+Anonymity & Security
+Cryptostorm - Tor's own secure VPN service
+[1] - VPN provider that supports VPN over Tor
+Fake ID Generator - Fake Identity Name, SSN, Driver's License, and Credit Card Numbers Generator.
+Help tor users avoid snooping Tor nodes track location.
+The New York Times Secure Drop - The Official .onion Secure Drop of the New York Times
+Deutsche Welle - Official website of Deutsche Welle
+BBC News - Official website of BBC News
+Protonmail - Onion version of ProtonMail
+PornHub - The Onion version of the popular porn site
+The Tor Project - Official Onion website of the Tor Project
+The Pirate Bay - Onion version of the Pirate Bay torrent site
+The Pirate Bay Forum - Onion version of the popular bittorrent site's forums
+LocalMonero.co - You can buy and sell Monero here, via it's .onion domain
+National Police of the Netherlands - The official site.
+NJALLA Considered the worlds most notorious "Privacy as a Service" provider for domains, VPS' and VPNs.
+Blogs / Essays / News Sites
+Darknet Live - Popular news site about Darknet matters
+FlashLight Deepweb News - Another website about news from the deep web.
+JamieWeb - Security tutorials and blog.
+CTemplar - First ever high end fully encrypted tor email service.
+- Onion set up by the Police and the Judicial Authorities of the Netherlands, listing Active, identified, and arrested Darknet Market operators.
+H/P/A/W/V/C
+Hack, Phreak, Anarchy (internet), Warez, Virus, Crack
+
+RiseUp - Riseup provides online communication tools for people and groups working on liberatory social change.
+BlackCloud - A minimalist, but useful .onion pastebin
+Keybase - A good pastebin with end-to-end encryption
+Megator - Nothing to do with the clearnet provider, but still a very good file uploader
+Stronghold Paste - Simple pastebin.
+Etherpad - Online text editor.
+Videos / Movies / TV / Games
+TGx - The torrent galaxy.
+Uncensored Video Board - Warning, explicit material may be found here
+Books
+Imperial Library of Trantor - Close to one million books.
+Drugs
+EuCanna - 'First Class Cannabis Healthcare' - Medical Grade Cannabis Buds, Rick Simpson Oil, Ointments and
+Peoples Drug Store - The Darkweb's Best Online Drug Supplier
+Smokeables - Finest Organic Cannabis shipped from the USA
+CannabisUK - UK Wholesale Cannabis Supplier.
+Hidden Services - Other Protocols
+irc chat server, [Victor] irc://iljqpkgabg4hrchbozwovffyk7fobpovfudsdmdjinehzihjn2uggmad.onion
+XMPP chat server, [TCPRST] xmpp://7hbyqvu5zdvyjopuho7vxdrzernk7bj76wpev7v4w4wp2nsl5hqg6qyd.onion
+FreedomIRC chat server, [FreedomIRC] irc://ncq3izrg3nlu2iilpi4unvug5hvbpg5ju4hzngvfbey7fzw6lajc7aad.onion (port 6667)
+For configuration and service/uptime testing, all services in this section MUST list the active port in their address.
+
+Chat centric services
+Some people and their usual server hangouts may be found in the Contact Directory.
+(Bitcoin)</protect>
+kissonmbczqxgebw.onion:10000 - KISS.onion - Keep It Simple and Safe - ditch the web browser, use SILC to communicate securely (using Pidgin with OTR)
+XMPP (formerly Jabber)
+xmpp:tortureregex47xf.onion:5222 - Public XMPP with MUC (multi user chat) enabled.
+TorChat Addresses
+Humans are listed in the above contact directory.
+The general idea of the remaining four service states below is that, if the Hidden Service Descriptor is available, and something is responding behind it...
+Presumably the operator is in limbo.
+
+
+
+
+
+Retrieved from "http://zqktlwiuavvvqqt4ybvgvi7tyo4hjl5xgfuvpdf6otjiycgwqbym2qad.onion/wiki/index.php?title=Main_Page&oldid=496509"
+
+
+
+
+
+
+
+
+Navigation menu
+
+Page actions
+
+
+Main PageDiscussionReadView sourceHistory
+
+
+
+
+Page actions
+
+Main PageDiscussionMoreTools
+
+
+
+Personal tools
+
+
+Create accountLog in
+
+
+
+
+
+
+
+
+Navigation
+
+Main pageRecent changesRandom pageRules of the site
+
+
+
+Search
+
+ 
+
+
+
+Tools
+
+What links hereRelated changesSpecial pagesPrintable versionPermanent linkPage information
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ This page was last edited on 10 March 2023, at 11:40.

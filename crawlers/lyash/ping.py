@@ -1,26 +1,15 @@
-import requests
 import bs4
 from urllib.parse import urlparse
 import re
-import filter
-import random
-from seed_list import SEEDS
-
-LIMIT = 100
-
-# SEEDLIST = [
-#     "http://torlinkv7cft5zhegrokjrxj2st4hcimgidaxdmcmdpcrnwfxrr2zxqd.onion/",
-#     "http://fvrifdnu75abxcoegldwea6ke7tnb3fxwupedavf5m3yg3y2xqyvi5qd.onion/",
-#     "http://zqktlwiuavvvqqt4ybvgvi7tyo4hjl5xgfuvpdf6otjiycgwqbym2qad.onion/wiki/index.php/Main_Page",
-#     "http://3bbad7fauom4d6sgppalyqddsqbf5u5p56b5k5uk2zxsy3d6ey2jobad.onion/discover",
-#     "http://tt3j2x4k5ycaa5zt.onion/",
-#     "http://juhanurmihxlp77nkq76byazcldy2hlmovfu2epvl5ankdibsot4csyd.onion/address/",
-#     "http://juhanurmihxlp77nkq76byazcldy2hlmovfu2epvl5ankdibsot4csyd.onion/add/onionsadded/",
-#     "http://donionsixbjtiohce24abfgsffo2l4tk26qx464zylumgejukfq2vead.onion/?cat=19&pg=1",
-#     "http://donionsixbjtiohce24abfgsffo2l4tk26qx464zylumgejukfq2vead.onion/?cat=20&pg=1&lang=en",
-#     "http://donionsixbjtiohce24abfgsffo2l4tk26qx464zylumgejukfq2vead.onion/?cat=7&pg=1&lang=en",
-#     "https://github.com/alecmuffett/real-world-onion-sites",
-# ]
+import asyncio
+import time
+from aiohttp import ClientSession, ClientResponseError
+import ssl
+import certifi
+import aiohttp
+from aiohttp_socks import ProxyType, ProxyConnector, ChainProxyConnector
+from seed_list import SEEDLIST, VISITED
+from filter_html import good_filter
 
 
 def is_valid_url(url):
@@ -32,60 +21,67 @@ def is_valid_url(url):
         return False
 
 
-class TorReq:
-    def __init__(self, seeds):
-        self.session = requests.session()
-        self.session.proxies = {
-            "http": "socks5h://127.0.0.1:9050",
-            "https": "socks5h://127.0.0.1:9050",
-        }
-        self.nvisited = 0
-        self.visited = []
-        self.response = ""
-        self.url_stack = seeds
-
-    def get(self, url):
-        # for seed in SEEDLIST:
-        #     response = requests.get(seed)
-        #     print(response.status_code)
-        if self.nvisited >= LIMIT:
-            return
-        if url in self.visited:
-            return
-
-        try:
-            print(url)
-            response = self.session.get(url)
-            filter.good_filter(response, url)
-        except:
-            print("meow")
-            self.chain()
-            return
-            pass
-        try:
-            self.response = response.content
-            self.nvisited += 1
-            self.visited.append(url)
-            self.fetch_links()
-        except:
-            pass
-
-    def fetch_links(self):
-
-        soup = bs4.BeautifulSoup(self.response, "lxml")
-        links = soup.find_all("a")
-        for link in links:
-            url = link.get("href")
-            if is_valid_url(url):
-                self.url_stack.append(url)
-        self.chain()
-
-    def chain(self):
-        url = self.url_stack.pop(0)
-        self.get(url)
+def fetch_links(resp):
+    soup = bs4.BeautifulSoup(resp, "lxml")
+    links = soup.find_all("a")
+    for link in links:
+        url = link.get("href")
+        if is_valid_url(url):
+            yield url
 
 
-x = TorReq(SEEDS)
-x.get(SEEDS)
+async def filter_resp(resp, url):
+    if resp is None:
+        return None
+    good_filter(resp, url)
 
 
+async def fetch_url_data(session, url):
+    print(url)
+    try:
+        async with session.get(url, timeout=60) as response:
+            resp = await response.text()
+    except Exception as e:
+        print(e)
+        return None
+    return resp
+
+
+async def fetch(url):
+    nvisited = 0
+    url_queue = []
+    prev_resp = None
+    ssl_context = ssl.create_default_context(cafile=certifi.where())
+    connector = ProxyConnector.from_url(
+        "socks5://127.0.0.1:9050", rdns=True, ssl=ssl_context
+    )
+
+    async with aiohttp.ClientSession(connector=connector) as session:
+        while True:
+            resp_task = asyncio.ensure_future(fetch_url_data(session, url))
+            filter_task = asyncio.ensure_future(filter_resp(prev_resp, url))
+            await asyncio.gather(resp_task, filter_task)
+            resp = resp_task.result()
+            # print(resp)
+            VISITED.append(url)
+            nvisited += 1
+
+            if resp is not None:
+                for link in fetch_links(resp):
+                    url_queue.append(link)
+                prev_resp = resp
+
+            while url_queue != []:
+                url = url_queue.pop(0)
+                if url not in VISITED:
+                    break
+            else:
+                if SEEDLIST == []:
+                    break
+                url = SEEDLIST.pop()
+            continue
+
+        return resp
+
+
+# asyncio.run(fetch("https://youtube.com"))

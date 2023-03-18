@@ -1,0 +1,45 @@
+/SharksMarket/img/logo--white.png
+/SharksMarket/img/visa_master_paypal--small.png
+/SharksMarket/img/sharks--white.png
+/SharksMarket/img/visa_master_paypal--big.png
+/SharksMarket/img/emoji--white_up_pointing_index.png
+/SharksMarket/img/emoji--smiling_face_with_sunglasses.png
+/SharksMarket/img/emoji--hundred_points_symbol.png
+/SharksMarket/img/emoji--earth_globe_americas.png
+/SharksMarket/img/emoji--face_with_finger_covering_closed_lips.png
+/SharksMarket/img/emoji--page_facing_up.png
+/SharksMarket/img/emoji--lock.png
+/SharksMarket/img/emoji--handshake.png
+/SharksMarket/img/emoji--speech_balloon.png
+/SharksMarket/img/reviews.jpg
+/SharksMarket/img/step--1.gif
+/SharksMarket/img/step--2.jpg
+/SharksMarket/img/step--3.jpg
+/SharksMarket/img/step--4.jpg
+/SharksMarket/img/step--5.jpg
+/SharksMarket/img/step--6.jpg
+/SharksMarket/img/step--7.jpg
+/SharksMarket/img/icon--chevron.png
+/SharksMarket/img/icon--chevron.png
+/SharksMarket/img/icon--chevron.png
+/SharksMarket/img/icon--chevron.png
+/SharksMarket/img/icon--chevron.png
+/SharksMarket/img/icon--chevron.png
+/SharksMarket/img/icon--chevron.png
+/SharksMarket/img/icon--chevron.png
+/SharksMarket/img/icon--chevron.png
+/SharksMarket/img/icon--chevron.png
+/SharksMarket/img/icon--chevron.png
+/SharksMarket/img/icon--chevron.png
+/SharksMarket/img/icon--chevron.png
+/SharksMarket/img/icon--chevron.png
+/SharksMarket/img/logo_sharks_cards.png
+
+ Skimming 
+ Skimming is when a small electronic device is used to copy and store credit card information.
+We are a small Team with Administrators,
+                Technicians, Developer and Engineers acting within a huge international company with access to dozens of
+                clients databases.
+Our database get updated on a regular basis and the prepared cards are safely stored.
+
+ We have all time access to a huge database with us as the developer and adminstrator.
