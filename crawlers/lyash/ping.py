@@ -3,6 +3,7 @@ import bs4
 from urllib.parse import urlparse
 import re
 import filter
+import random
 from seed_list import SEEDS
 
 LIMIT = 100
@@ -26,7 +27,7 @@ def is_valid_url(url):
     try:
         result = urlparse(url)
         if all([result.scheme, result.netloc]):
-            return bool(re.search(r"\.onion/$", url))
+            return ".onion" in url
     except Exception as e:
         return False
 
@@ -54,14 +55,15 @@ class TorReq:
 
         try:
             print(url)
-            response = self.session.get(url).content
+            response = self.session.get(url)
+            filter.good_filter(response, url)
         except:
             print("meow")
             self.chain()
             return
             pass
         try:
-            self.response = response
+            self.response = response.content
             self.nvisited += 1
             self.visited.append(url)
             self.fetch_links()
@@ -69,15 +71,14 @@ class TorReq:
             pass
 
     def fetch_links(self):
+
         soup = bs4.BeautifulSoup(self.response, "lxml")
         links = soup.find_all("a")
         for link in links:
             url = link.get("href")
             if is_valid_url(url):
                 self.url_stack.append(url)
-                # filter.simple_filter(url)
-                print('1234567890\n\n')
-                self.chain()
+        self.chain()
 
     def chain(self):
         url = self.url_stack.pop(0)
@@ -85,10 +86,6 @@ class TorReq:
 
 
 x = TorReq(SEEDS)
-x.get('https://lxwu7pwyszfevhglxfgaukjqjdk2belosfvsl2ekzx3vrboacvewc7qd.onion/')
-# print(is_valid_url("http://google.com"))
-# print(is_valid_url("http://google.onion"))
-# print(is_valid_url("http://glskjdflksjdflskdjflsdkfj"))
-# print(is_valid_url("google.onion"))
-# print(is_valid_url("google.asldkfjldskfj"))
+x.get(SEEDS)
+
 
