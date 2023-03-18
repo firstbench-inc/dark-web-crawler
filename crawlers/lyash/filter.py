@@ -38,7 +38,8 @@ def simple_filter():
                     image_urls.append(l["src"])
                     
             url1 = (i[8:] if "https" in i else i[7:]) + ".txt"
-            url1 = url1.replace(r"/", "\\")
+            if os.name == "posix":
+                url1 = url1.replace(r"/", "\\")
             output_file = os.path.join("crawlers/lyash/filter-results", url1)
             f = open(output_file, "w")
             for k in image_urls:
