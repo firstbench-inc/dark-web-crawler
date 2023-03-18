@@ -1,7 +1,0 @@
-/PTEAM/img/logo.jpg
-/PTEAM/img/500.jpg
-/PTEAM/img/1000.jpg
-/PTEAM/img/2000.jpg
-/PTEAM/img/wu500.png
-/PTEAM/img/wu1000.png
-/PTEAM/img/wu2000.png
