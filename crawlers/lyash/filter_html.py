@@ -50,7 +50,7 @@ from urllib.parse import urlparse
 #                         f.write(line + "\n")
 
 
-def good_filter(url_check, url):
+def good_filter(url_check, url, keyword="tor"):
     # url_check = url_check.content.decode()
     soup = BeautifulSoup(url_check, "html.parser")
 
