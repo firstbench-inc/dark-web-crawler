@@ -80,20 +80,22 @@ async def fetch(url):
     )
 
     es_session = aiohttp.ClientSession()
+    f = open("crawlers/lyash/visited.txt", "w")
 
     async with aiohttp.ClientSession(connector=connector) as session:
         while True:
             data = {"link": prev_url, "content": prev_resp, "title": prev_title}
 
             resp_task = asyncio.ensure_future(fetch_url_data(session, url))
-            # filter_task = asyncio.ensure_future(filter_resp(prev_resp, url))
-            filter_task = asyncio.ensure_future(post_url_data(es_session, data))
-            await asyncio.gather(resp_task, filter_task)
+            db_filter = asyncio.ensure_future(filter_resp(prev_resp, url))
+            post_task = asyncio.ensure_future(post_url_data(es_session, data))
+            await asyncio.gather(resp_task, post_task, db_filter)
             resp = resp_task.result()
             # print(resp)
 
             if resp is not None:
                 VISITED.append(url)
+                f.write(url + "\n")
                 nvisited += 1
                 prev_url = url
                 for (link, title) in fetch_links(resp):

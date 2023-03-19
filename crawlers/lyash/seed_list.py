@@ -418,4 +418,5 @@ SEEDLIST = [
 ]
 
 
-VISITED = []
+with open("crawlers/lyash/visited.txt", "r") as f:
+    VISITED = f.readlines()

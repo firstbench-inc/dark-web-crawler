@@ -69,11 +69,19 @@ sg.ChangeLookAndFeel("BluePurple")  # can refer other colors too
 
 
 def get_req(keyword):
+    shown = []
     rep = requests.get("http://127.0.0.1:9200/_search?q=onion")
     rep = rep.json()
     for hit in rep["hits"]["hits"]:
-        print((hit["_source"])["title"], end=":")
-        print((hit["_source"])["link"])
+        link = hit["_source"]["link"]
+        if link in shown:
+            continue
+        shown.append(link)
+        title = str((hit["_source"])["title"])
+        title = title.replace("\n", "")
+        title.strip()
+        print((title), end=":")
+        print(link)
 
 
 def main():
