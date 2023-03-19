@@ -25,7 +25,6 @@ import pickle
 import PySimpleGUI as sg
 from typing import Dict
 import time
-import tkinter as tk
 
 
 class Search:
@@ -39,7 +38,7 @@ class Search:
 
     def create_new_index(self, values: Dict[str, str]) -> None:
         # Create a new file index of the root; then save to self.file_index and to pickle file '''
-        root_path = values["PATH"]
+        root_path = "/home/shusrith/dark-web-crawler/crawlers/lyash/filter-results"
         self.file_index: list = [
             (root, files) for root, dirs, files in os.walk(root_path) if files
         ]
@@ -57,7 +56,6 @@ class Search:
             self.file_index = []
 
     def files(self, contains):
-        print("im also here")
         self.t = contains
         self.x = open("/home/shusrith/dark-web-crawler/search_results.txt").readlines()
         for i in range(len(self.x)):
@@ -66,10 +64,11 @@ class Search:
 
             self.f1 = open(str(self.n))
             self.b = self.f1.readlines()
+
             for y in self.b:
-                if self.t in y:
-                    self.f2 = open("sample.txt", "a")
-                    self.f2.write(str(y))
+                    if self.t in y:
+                        self.f2 = open("sample.txt", "a")
+                        self.f2.write(str(y))
 
     def search(self, values: Dict[str, str]) -> None:
         """Search for the term based on the type in the index; the types of search
@@ -77,26 +76,25 @@ class Search:
         self.results.clear()  # clears the list
         self.matches = 0
         self.searched = 0
-        term = values["TERM"]
-        print("im here")
+        # term = values["TERM"]
         # search for matches and counts results
         for path, files in self.file_index:
             for file in files:
                 self.searched += 1
-                if (
-                    values["CONTAINS"]
-                    and term.lower() in file.lower()
-                    or values["STARTSWITH"]
-                    and file.lower().startswith(term.lower())
-                    or values["ENDSWITH"]
-                    and file.lower().endswith(term.lower())
-                ):
-                    result = path.replace("\\", "/") + "/" + file
-                    # coz backslash are escape characters
-                    self.results.append(result)
-                    self.matches += 1
-                else:
-                    continue
+                # if (
+                #     values["CONTAINS"]
+                #     and term.lower() in file.lower()
+                #     or values["STARTSWITH"]
+                #     and file.lower().startswith(term.lower())
+                #     or values["ENDSWITH"]
+                #     and file.lower().endswith(term.lower())
+                # ):
+                result = path.replace("\\", "/") + "/" + file
+                # coz backslash are escape characters
+                self.results.append(result)
+                self.matches += 1
+                # else:
+                #     continue
         # save results to file
         with open("search_results.txt", "w") as f:
             for r in self.results:
@@ -124,10 +122,10 @@ class interface:
                 sg.Radio("EndsWith", size=(12, 1), group_id="choice", key="ENDSWITH"),
             ],
             [
-                sg.Text("Directory", size=(12, 1)),
-                sg.Input("/..", size=(38, 1), key="PATH"),
-                # similar to filedialog
-                sg.FolderBrowse("Browse", size=(12, 1)),
+                # sg.Text("Directory", size=(12, 1)),
+                # sg.Input("/..", size=(38, 1), key="PATH"),
+                # # similar to filedialog
+                # sg.FolderBrowse("Browse", size=(12, 1)),
                 sg.Button("New Index", size=(12, 1), key="INDEX"),
                 sg.Button("Search", size=(12, 1), bind_return_key=True, key="SEARCH"),
             ],
@@ -176,5 +174,3 @@ if __name__ == "__main__":
     print("Starting program...")
     main()
 
-#   https://github.com/israel-dryer/File-Search-Engine/blob/master/file_search_engine.py
-# https://www.youtube.com/watch?v=IWDC9vcBIFQ

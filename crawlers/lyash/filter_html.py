@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import os
 from urllib.parse import urlparse
 
-keyword = "tor"
+# keyword = "kush"
 # url = [
 #     "https://www.w3schools.com/charsets/ref_html_ascii.asp",
 #     "https://www.cs.cmu.edu/~pattis/15-1XX/common/handouts/ascii.html",
@@ -79,6 +79,7 @@ def good_filter(url_check, url):
     f = open(output_file, "w")
     for k in image_urls:
         f.write(k + "\n")
-    for line in sentences:
-        if keyword in line:
-            f.write(line + "\n")
+    # for line in sentences:
+    #     # if keyword in line:
+    #         f.write(line + "\n")
+    f.write(text)
