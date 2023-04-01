@@ -38,7 +38,7 @@ class Search:
 
     def create_new_index(self, values: Dict[str, str]) -> None:
         # Create a new file index of the root; then save to self.file_index and to pickle file '''
-        root_path = "/home/shusrith/dark-web-crawler/crawlers/lyash/filter-results"
+        root_path = "crawlers/lyash/filter-results"
         self.file_index: list = [
             (root, files) for root, dirs, files in os.walk(root_path) if files
         ]
@@ -57,7 +57,7 @@ class Search:
 
     def files(self, contains):
         self.t = contains
-        self.x = open("/home/shusrith/dark-web-crawler/search_results.txt").readlines()
+        self.x = open("search_results.txt").readlines()
         for i in range(len(self.x)):
             self.w = self.x[i]
             self.n = self.w.replace("\n", "")
@@ -66,9 +66,9 @@ class Search:
             self.b = self.f1.readlines()
 
             for y in self.b:
-                    if self.t in y:
-                        self.f2 = open("sample.txt", "a")
-                        self.f2.write(str(y))
+                if self.t in y:
+                    self.f2 = open("sample.txt", "a")
+                    self.f2.write(str(y))
 
     def search(self, values: Dict[str, str]) -> None:
         """Search for the term based on the type in the index; the types of search
@@ -155,7 +155,6 @@ def main():
             print()
         elif click == "SEARCH":
             s.search(values)
-            print("do we get here")
             for result in s.results:
                 print(result)
 
@@ -173,4 +172,3 @@ def main():
 if __name__ == "__main__":
     print("Starting program...")
     main()
-

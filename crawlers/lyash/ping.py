@@ -43,8 +43,11 @@ async def fetch_url_data(session, url):
         async with session.get(url, timeout=60) as response:
             resp = await response.text()
     except Exception as e:
-        print("fetch url", e)
+        # print("fetch url", e)
         return None
+    except:
+        pass
+        # print("cat")
     return resp
 
 
@@ -61,9 +64,11 @@ async def post_url_data(session, data):
             # data=bytes(data, "utf-8"),
             json=data,
         ) as resp:
-            print(resp.status)
+            pass
+            # print(resp.status)
     except Exception as e:
-        print("post url", e)
+        pass
+        # print("post url", e)
 
     pass
 
@@ -80,7 +85,6 @@ async def fetch(url):
     )
 
     es_session = aiohttp.ClientSession()
-    f = open("crawlers/lyash/visited.txt", "w")
 
     async with aiohttp.ClientSession(connector=connector) as session:
         while True:
@@ -95,7 +99,6 @@ async def fetch(url):
 
             if resp is not None:
                 VISITED.append(url)
-                f.write(url + "\n")
                 nvisited += 1
                 prev_url = url
                 for (link, title) in fetch_links(resp):
@@ -138,5 +141,6 @@ async def fetch_single(url):
 
 if __name__ == "__main__":
     asyncio.run(
-        fetch("http://torlinkv7cft5zhegrokjrxj2st4hcimgidaxdmcmdpcrnwfxrr2zxqd.onion/")
+        # fetch("http://torlinkv7cft5zhegrokjrxj2st4hcimgidaxdmcmdpcrnwfxrr2zxqd.onion/")
+        fetch("http://gkcns4d3453llqjrksxdijfmmdjpqsykt6misgojxlhsnpivtl3uwhqd.onion/")
     )

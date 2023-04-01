@@ -16,6 +16,7 @@ threads = []
 
 for i in range(THREADS):
     threads.append(threading.Thread(target=launch_crawler, args=(SEEDLIST.pop(),)))
+    # threads.append(threading.Thread(target=lambda: launch_crawler(SEEDLIST.pop())))
     pass
 
 for thread in threads:
