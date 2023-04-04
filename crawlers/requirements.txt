@@ -1,0 +1,9 @@
+regex == 2023.3.23
+requests == 2.25.1
+beautfiulsoup4 == 4.10.0
+urllib3 == 1.26.5
+asyncio == 3.4.3
+aiohttp == 3.8.4
+certifi == 2020.6.20
+aiohttp_socks == 0.8.0
+pysimplegui == 4.60.4
