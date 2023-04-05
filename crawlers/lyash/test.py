@@ -9,7 +9,7 @@ import time
 keyword = "cocaine"
 
 # Define the path to the directory containing the text files
-folder_path = "/home/shusrith/filter-results"
+folder_path = "crawlers/lyash/filter-results"
 
 # Create a list to store the file paths and text contents
 
@@ -18,7 +18,7 @@ folder_path = "/home/shusrith/filter-results"
 
 
 def search(sentences):
-    path = "/home/shusrith/results.txt"
+    path = "crawlers/lyash/results.txt"
     # Create an instance of the TfidfVectorizer class and fit it to the preprocessed text data
     vectorizer = TfidfVectorizer()
     tfidf_matrix = vectorizer.fit_transform(sentences)
@@ -36,7 +36,7 @@ def search(sentences):
             related_sentences.append(sentences[i])
 
     # Print the related sentences
-    with open("/home/shusrith/sentences.txt", "a") as f:
+    with open("crawlers/lyash/sentences.txt", "a") as f:
         f.write(f"in {path}\n")
         for i in related_sentences:
             f.write(f"{i}\n")
@@ -83,7 +83,7 @@ def lsa(file_contents, file_path, sentences):
         print(len(sorted_indices), len(file_contents))
 
         # Print the sorted files and similarity scores
-        with open("/home/shusrith/results.txt", "a") as f:
+        with open("crawlers/lyash/results.txt", "a") as f:
             # f.write(f"in {file_path}\n")
             # for i in range(len(sorted_files)):
             # f.write(
