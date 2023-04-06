@@ -105,11 +105,23 @@ for file_name in os.listdir(folder_path):
         with open(file_path, "r") as f:
             text = f.read()
             file_text = text.split()
-            
-            sentences = text.split(".")
-            sentences = [s.lower().strip().translate(str.maketrans("", "", string.punctuation))for s in sentences]
-     
-            a += lsa(file_text, file_path, sentences)
+
+            sentences = text.split("\n")
+            sentences = [
+                s.lower().strip().translate(str.maketrans("", "", string.punctuation))
+                for s in sentences
+            ]
+            if len(sentences) % 3 == 0:
+                sentences1 = [
+                    sentences[i] + "\n" + sentences[i + 1] + "\n" + sentences[i + 2]
+                    for i in range(0, len(sentences), 3)
+                ]
+            else:
+                sentences1 = [
+                    sentences[i] + "\n" + sentences[i + 1]
+                    for i in range(0, len(sentences) - 1, 2)
+                ]
+            a += lsa(file_text, file_path, sentences1)
         # print(a)
     b += 1
 
