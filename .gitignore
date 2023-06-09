@@ -1,3 +1,4 @@
 *.pyc
 __pycache__/*
 filter-results/
+crawlers/ping2/target/
