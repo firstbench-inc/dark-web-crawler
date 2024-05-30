@@ -34,7 +34,7 @@ def fetch_links(resp):
 async def filter_resp(resp, url):
     if resp is None:
         return None
-    good_filter(resp, url)
+    # good_filter(resp, url)
 
 
 async def fetch_url_data(session, url):
