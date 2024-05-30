@@ -25,7 +25,7 @@ import pickle
 import PySimpleGUI as sg
 from typing import Dict
 import time
-import tkinter as tk
+# import ttkinter as tk
 import requests
 
 
@@ -70,7 +70,7 @@ sg.ChangeLookAndFeel("BluePurple")  # can refer other colors too
 
 def get_req(keyword):
     shown = []
-    rep = requests.get(f"http://127.0.0.1:9200/_search?q={keyword}")
+    rep = requests.get(f"http://127.0.0.1:9200/logs/_search?q={keyword}")
     rep = rep.json()
     for hit in rep["hits"]["hits"]:
         link = hit["_source"]["link"]

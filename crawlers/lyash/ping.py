@@ -59,13 +59,13 @@ async def post_url_data(session, data):
     # data = data.__str__()
     try:
         async with session.post(
-            "http://127.0.0.1:9200/logs/my_app",
+            "http://127.0.0.1:9200/logs/_doc",
             headers={"Content-Type": "application/json"},
             # data=bytes(data, "utf-8"),
             json=data,
         ) as resp:
+            print(resp)
             pass
-            # print(resp.status)
     except Exception as e:
         pass
         # print("post url", e)
