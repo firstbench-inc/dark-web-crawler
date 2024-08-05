@@ -38,7 +38,6 @@ async def filter_resp(resp, url):
 
 
 async def fetch_url_data(session, url):
-    print(url)
     try:
         async with session.get(url, timeout=60) as response:
             resp = await response.text()
@@ -54,7 +53,6 @@ async def fetch_url_data(session, url):
 async def post_url_data(session, data):
     if data["content"] is None:
         return
-    print(data["link"])
 
     # data = data.__str__()
     try:
@@ -64,7 +62,7 @@ async def post_url_data(session, data):
             # data=bytes(data, "utf-8"),
             json=data,
         ) as resp:
-            print(resp)
+            # print(resp)
             pass
     except Exception as e:
         pass
@@ -98,6 +96,7 @@ async def fetch(url):
             # print(resp)
 
             if resp is not None:
+                print(url, "true")
                 VISITED.append(url)
                 nvisited += 1
                 prev_url = url
@@ -106,6 +105,8 @@ async def fetch(url):
                         url_queue.append(link)
                     prev_title = title
                 prev_resp = resp
+            else:
+                print(url, "false")
 
             while url_queue != []:
                 url = url_queue.pop(0)
